@@ -1,11 +1,958 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <title>my website</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Primary SEO Meta Tags -->
+  <title>Quran Scroll — Read the Quran in English, One Verse at a Time (iOS App)</title>
+  <meta name="title" content="Quran Scroll — Read the Quran in English, One Verse at a Time (iOS App)" />
+  <meta name="description" content="Discover the Noble Quran in clear English translation, one verse card at a time. Smart non-sequential verse discovery across all 114 Surahs, personal reflection notes, multi-format export (PDF, Word, Excel, Pages, Numbers), and 100% offline privacy." />
+  <meta name="keywords" content="Quran Scroll, Quran English app, daily Quran verse iOS, read Quran one verse at a time, Quran reflection journal, random Quran verse discovery, offline English Quran app, Quran study notes export PDF Word Excel, mindful Quran reading, Islamic reflection app iPhone" />
+  <meta name="author" content="Quran Scroll" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <link rel="canonical" href="https://placebonocebo.com/" />
+  <meta name="theme-color" content="#FAF6EE" />
+
+  <!-- Open Graph / Facebook / iMessage -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://placebonocebo.com/" />
+  <meta property="og:site_name" content="Quran Scroll" />
+  <meta property="og:title" content="Quran Scroll — Mindful English Quran Reading, One Verse at a Time" />
+  <meta property="og:description" content="Experience the Quran through distraction-free vertical verse cards. Discover verses across all 114 Surahs, write personal reflections, and export your study journal to PDF, Word, Excel, Pages, or Numbers." />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://placebonocebo.com/" />
+  <meta name="twitter:title" content="Quran Scroll — Read the Quran in English, One Verse at a Time" />
+  <meta name="twitter:description" content="A calm, distraction-free iOS app for discovering Quranic verses in English, journaling personal reflections, and exporting notes offline." />
+
+  <!-- Schema.org Structured Data (SoftwareApplication + FAQPage for Rich Search Snippets) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Quran Scroll",
+        "operatingSystem": "iOS 17.0 or later",
+        "applicationCategory": "ReferenceApplication",
+        "applicationSubCategory": "Books & Reference",
+        "url": "https://placebonocebo.com/",
+        "description": "Quran Scroll is a distraction-free iOS application that presents the English translation of the Quran one verse card at a time. Featuring non-sequential discovery across all 114 Surahs, personal reflection notes, and multi-format document export (PDF, DOCX, XLSX, RTF, CSV).",
+        "offers": {
+          "@type": "Offer",
+          "price": "0.00",
+          "priceCurrency": "USD"
+        },
+        "featureList": [
+          "One-verse-at-a-time vertical card scrolling",
+          "Smart non-sequential random discovery across all 114 Surahs (6,236 verses)",
+          "Centered, distraction-free English translation typography",
+          "Personal reflection notes and verse bookmarking",
+          "Multi-format export to PDF, Microsoft Word (.docx), Excel (.xlsx), Apple Pages (.rtf), and Numbers (.csv)",
+          "5 handcrafted reading themes including Classic Parchment and Pure Midnight",
+          "100% offline SQLite database with zero tracking and no ads"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How does Quran Scroll help with daily Quran reflection?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Instead of overwhelming pages of dense text, Quran Scroll presents a single verse centered on a calm card. Using a smart non-sequential discovery algorithm, each vertical swipe brings a verse from a different Surah across all 6,236 verses of the Quran, encouraging fresh contemplation."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I write and export my personal Quran study notes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. You can attach personal reflections to any verse and export your notes in five professional formats: PDF document, Microsoft Word (.docx), Microsoft Excel (.xlsx), Apple Pages (.rtf), and Apple Numbers (.csv)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Quran Scroll work offline and protect my privacy?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. All 6,236 verses are bundled directly inside the app. Quran Scroll works 100% offline, requires no account or login, contains zero advertisements, and never collects or transmits your personal data or notes."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg-primary: #FAF6EE;
+      --bg-elevated: #FFFFFF;
+      --bg-subtle: #F2ECE1;
+      --text-primary: #1F1B16;
+      --text-secondary: #5E554A;
+      --text-muted: #8A7F70;
+      --accent: #8B6528;
+      --accent-soft: rgba(139, 101, 40, 0.12);
+      --border: rgba(31, 27, 22, 0.09);
+      --shadow-card: 0 20px 45px -15px rgba(31, 27, 22, 0.10), 0 4px 14px -2px rgba(31, 27, 22, 0.05);
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --max-w: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.65;
+    }
+
+    .serif {
+      font-family: "New York", Georgia, "Times New Roman", serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Navigation */
+    header.navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: rgba(250, 246, 238, 0.85);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #9A7232, #644616);
+      color: #FFF;
+      display: grid;
+      place-items: center;
+      font-family: Georgia, serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(139, 101, 40, 0.25);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 0.94rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--text-primary);
+      color: #FFFFFF;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      opacity: 0.92;
+    }
+
+    /* Hero Section */
+    .hero {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 64px 24px 80px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.35rem, 4.5vw, 3.6rem);
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      margin-bottom: 22px;
+      color: var(--text-primary);
+    }
+
+    .hero p.lead {
+      font-size: 1.16rem;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      max-width: 560px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .btn-large {
+      padding: 14px 28px;
+      font-size: 1rem;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 24px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      font-weight: 600;
+      font-size: 0.98rem;
+      color: var(--text-primary);
+      transition: background 0.15s ease;
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-subtle);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Interactive App Card Preview (Centered Both Vertically & Horizontally) */
+    .preview-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .phone-frame {
+      width: 100%;
+      max-width: 370px;
+      aspect-ratio: 9 / 17.5;
+      background: #EFE9DC;
+      border-radius: 44px;
+      padding: 16px;
+      box-shadow: 0 30px 60px -18px rgba(31, 27, 22, 0.22), 0 0 0 8px rgba(31, 27, 22, 0.06);
+      display: flex;
+      flex-direction: column;
+      transition: background 0.3s ease;
+    }
+
+    .verse-card-preview {
+      flex: 1;
+      background: #FAF6EE;
+      border-radius: 30px;
+      border: 1px solid rgba(139, 101, 40, 0.18);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .card-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .surah-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(139, 101, 40, 0.12);
+      color: #8B6528;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .card-center-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 16px 6px;
+    }
+
+    .card-verse-text {
+      font-family: "New York", Georgia, serif;
+      font-size: 1.32rem;
+      line-height: 1.55;
+      color: #231F1A;
+      margin-bottom: 16px;
+    }
+
+    .card-verse-ref {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #8B6528;
+      opacity: 0.9;
+    }
+
+    .card-bottom-actions {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .action-chip {
+      padding: 7px 13px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: rgba(139, 101, 40, 0.1);
+      color: #5E554A;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.12s ease;
+    }
+
+    .action-chip:hover {
+      transform: scale(1.04);
+    }
+
+    .theme-selector {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .theme-btn {
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    .theme-btn.active {
+      background: var(--text-primary);
+      color: #FFF;
+      border-color: var(--text-primary);
+    }
+
+    /* Section Containers */
+    section {
+      padding: 80px 24px;
+    }
+
+    .section-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 56px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.85rem, 3.2vw, 2.5rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+
+    .section-header p {
+      color: var(--text-secondary);
+      font-size: 1.08rem;
+    }
+
+    /* Introduction / Story Section (SEO Rich) */
+    .intro-band {
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .intro-card {
+      background: var(--bg-elevated);
+      padding: 32px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-card);
+    }
+
+    .intro-card h3 {
+      font-size: 1.22rem;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+
+    .intro-card p {
+      color: var(--text-secondary);
+      font-size: 0.96rem;
+    }
+
+    /* Features Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-box {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 30px;
+      transition: transform 0.2s ease;
+    }
+
+    .feature-box:hover {
+      transform: translateY(-3px);
+    }
+
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      font-size: 1.25rem;
+      margin-bottom: 18px;
+    }
+
+    .feature-box h3 {
+      font-size: 1.15rem;
+      margin-bottom: 10px;
+    }
+
+    .feature-box p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+
+    /* Export Formats Showcase */
+    .export-banner {
+      margin-top: 40px;
+      background: linear-gradient(135deg, #231F1A 0%, #3A3125 100%);
+      color: #FAF6EE;
+      border-radius: var(--radius-lg);
+      padding: 44px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .export-banner h3 {
+      font-size: 1.65rem;
+      margin-bottom: 12px;
+    }
+
+    .export-banner p {
+      color: rgba(250, 246, 238, 0.82);
+      margin-bottom: 20px;
+    }
+
+    .format-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .format-badge {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-size: 0.86rem;
+      font-weight: 600;
+    }
+
+    /* FAQ Section */
+    .faq-list {
+      max-width: 820px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    details.faq-item {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 24px;
+    }
+
+    details.faq-item summary {
+      font-weight: 600;
+      font-size: 1.05rem;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    details.faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.faq-item p {
+      margin-top: 12px;
+      color: var(--text-secondary);
+      font-size: 0.96rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 24px;
+      background: var(--bg-subtle);
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      font-weight: 500;
+    }
+
+    .footer-links a:hover {
+      color: var(--text-primary);
+      text-decoration: underline;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 40px;
+      }
+      .hero p.lead {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-actions, .hero-meta {
+        justify-content: center;
+      }
+      .intro-grid, .features-grid, .export-banner {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>hello world</h1>
-    <p>me</p>
+
+  <!-- Top Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="https://placebonocebo.com/" class="brand" aria-label="Quran Scroll Home">
+        <span class="brand-icon">Q</span>
+        <span>Quran Scroll</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="#introduction">Introduction</a>
+        <a href="#features">Features</a>
+        <a href="#export">Journal &amp; Export</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://placebonocebo.com/privacy">Privacy Policy</a>
+      </nav>
+      <a href="#download" class="btn-primary">Get for iPhone</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="download">
+      <div>
+        <div class="eyebrow">iOS App &bull; Mindful Quran Reading</div>
+        <h1 class="serif">Read the Quran in English, One Verse at a Time.</h1>
+        <p class="lead">
+          Replace mindless scrolling with peaceful contemplation. <strong>Quran Scroll</strong> presents a single, centered English verse on every card—helping you discover wisdom across all 114 Surahs, capture personal reflections, and study completely offline.
+        </p>
+        <div class="hero-actions">
+          <a href="#features" class="btn-primary btn-large">Explore Features</a>
+          <button type="button" class="btn-secondary" onclick="nextPreviewVerse()">Try Interactive Verse Card &rarr;</button>
+        </div>
+        <div class="hero-meta">
+          <span>&#10003; All 6,236 Verses Included</span>
+          <span>&#10003; 100% Offline &amp; Private</span>
+          <span>&#10003; No Ads or Subscriptions</span>
+        </div>
+      </div>
+
+      <!-- Interactive Live Verse Card Mockup -->
+      <div class="preview-wrapper" aria-label="Interactive App Preview">
+        <div class="phone-frame" id="phoneFrame">
+          <article class="verse-card-preview" id="verseCard">
+            <div class="card-top-bar">
+              <span class="surah-pill" id="previewSurah">Surah Ash-Sharh &bull; 94:5</span>
+              <span class="surah-pill" id="previewBadge">Meccan</span>
+            </div>
+
+            <div class="card-center-body">
+              <p class="card-verse-text" id="previewText">
+                “For indeed, with hardship [will be] ease.”
+              </p>
+              <span class="card-verse-ref" id="previewRef">Surah 94, Verse 5</span>
+            </div>
+
+            <div class="card-bottom-actions">
+              <button type="button" class="action-chip" onclick="nextPreviewVerse()">Next Random Verse &#8595;</button>
+            </div>
+          </article>
+        </div>
+
+        <div class="theme-selector" role="group" aria-label="Preview Reading Themes">
+          <button type="button" class="theme-btn active" onclick="setTheme('parchment', this)">Parchment</button>
+          <button type="button" class="theme-btn" onclick="setTheme('midnight', this)">Midnight</button>
+          <button type="button" class="theme-btn" onclick="setTheme('clean', this)">Clean</button>
+          <button type="button" class="theme-btn" onclick="setTheme('sage', this)">Forest Sage</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Introduction & Philosophy Section (SEO Content) -->
+    <section class="intro-band" id="introduction">
+      <div class="section-inner">
+        <div class="section-header">
+          <h2 class="serif">Why We Built Quran Scroll</h2>
+          <p>
+            Modern phones train our attention for rapid, fragmented feeds. Quran Scroll transforms that vertical swipe gesture into a quiet sanctuary for English Quran reflection.
+          </p>
+        </div>
+
+        <div class="intro-grid">
+          <article class="intro-card">
+            <h3 class="serif">Focus on a Single Ayah</h3>
+            <p>
+              Traditional multi-column pages can feel overwhelming when you only have a few quiet minutes. By isolating one verse centered vertically and horizontally inside a spacious card, every word invites pause and reflection.
+            </p>
+          </article>
+
+          <article class="intro-card">
+            <h3 class="serif">Cross-Surah Discovery</h3>
+            <p>
+              Instead of reading only the chapters you already know, Quran Scroll’s smart non-sequential engine draws from all 114 Surahs and 6,236 verses—ensuring consecutive cards never repeat the same Surah back-to-back.
+            </p>
+          </article>
+
+          <article class="intro-card">
+            <h3 class="serif">Your Private Reflection Journal</h3>
+            <p>
+              When a verse speaks to your situation, capture your thoughts immediately. Your personal reflections stay stored locally on your iPhone and can be exported anytime to PDF, Word, Excel, Apple Pages, or Numbers.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Features Section -->
+    <section id="features">
+      <div class="section-inner">
+        <div class="section-header">
+          <h2 class="serif">Designed for Clarity, Built for Reflection</h2>
+          <p>Every detail of Quran Scroll is crafted to keep your focus entirely on the meaning of the text.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-box">
+            <div class="feature-icon">&#8597;</div>
+            <h3>Vertical Paging Cards</h3>
+            <p>Smooth, full-card vertical paging snaps cleanly from one verse to the next with generous margins and zero visual clutter.</p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-icon">&#10024;</div>
+            <h3>Smart Non-Sequential Feed</h3>
+            <p>Explore the breadth of the Quran effortlessly. Each swipe surfaces a verse from a different Surah while preventing session duplicates.</p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-icon">&#9998;</div>
+            <h3>Personal Verse Notes</h3>
+            <p>Write, edit, and search personal reflections tied to specific verses. Build a lasting spiritual journal as you read.</p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-icon">&#128278;</div>
+            <h3>Instant Bookmarks</h3>
+            <p>Save meaningful verses with a single tap and filter or search your bookmarked collection whenever you need reminders.</p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-icon">&#127912;</div>
+            <h3>5 Handcrafted Themes &amp; Fonts</h3>
+            <p>Read comfortably day or night with Classic Parchment, Pure Midnight, Modern Clean, Forest Sage, and Velvet Amber themes.</p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-icon">&#128274;</div>
+            <h3>100% Offline &amp; Private</h3>
+            <p>Powered by an embedded SQLite database. Works on airplanes, subways, and anywhere offline—with zero tracking or ads.</p>
+          </div>
+        </div>
+
+        <!-- Multi-Format Export Highlight -->
+        <div class="export-banner" id="export">
+          <div>
+            <h3 class="serif">Take Your Quran Reflections Anywhere</h3>
+            <p>
+              Your notes belong to you. Export a single verse reflection or your entire study journal into native office and publishing formats—ready for printing, archiving, or sharing with study circles.
+            </p>
+            <div class="format-badges">
+              <span class="format-badge">PDF Document (.pdf)</span>
+              <span class="format-badge">Microsoft Word (.docx)</span>
+              <span class="format-badge">Microsoft Excel (.xlsx)</span>
+              <span class="format-badge">Apple Pages (.rtf)</span>
+              <span class="format-badge">Apple Numbers (.csv)</span>
+            </div>
+          </div>
+          <div>
+            <p style="font-size: 0.92rem; line-height: 1.7; color: rgba(250,246,238,0.9);">
+              <strong>Every export includes:</strong><br />
+              &bull; Surah name, chapter number, and verse coordinate<br />
+              &bull; Full English verse translation<br />
+              &bull; Your complete personal reflection note<br />
+              &bull; Last updated timestamp and clean print formatting
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEO FAQ Section -->
+    <section id="faq" style="padding-top: 20px;">
+      <div class="section-inner">
+        <div class="section-header">
+          <h2 class="serif">Frequently Asked Questions</h2>
+          <p>Everything you need to know about reading and journaling with Quran Scroll on iOS.</p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary>What makes Quran Scroll different from standard Quran apps?</summary>
+            <p>
+              Standard Quran apps are designed like reference books with dense chapters and menus. Quran Scroll is designed for daily mindfulness and contemplation: it displays a single English verse centered on a full-screen card, allowing you to reflect deeply on one verse at a time without distraction.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>How does the random verse discovery work?</summary>
+            <p>
+              Quran Scroll uses a smart non-sequential selection algorithm across all 6,236 verses (114 Surahs). It ensures you don’t see verses from the exact same Surah twice in a row and remembers verses you have already seen during your session so every swipe feels fresh.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can I export my personal notes to Word, Excel, PDF, Pages, or Numbers?</summary>
+            <p>
+              Yes. You can export either an individual note or your entire collection of notes at any time. Quran Scroll natively generates formatted PDF files, Microsoft Word (<code>.docx</code>), Microsoft Excel (<code>.xlsx</code>), Apple Pages-compatible Rich Text (<code>.rtf</code>), and Apple Numbers-compatible spreadsheets (<code>.csv</code>).
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Does the app collect any personal data or require an internet connection?</summary>
+            <p>
+              No. The complete English Quran database is bundled inside the app so it works 100% offline. We do not require user accounts, we do not use analytics or tracking SDKs, and your bookmarks and personal notes never leave your device unless you choose to export or share them. Read our full <a href="https://placebonocebo.com/privacy" style="text-decoration: underline;">Privacy Policy</a>.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <strong>Quran Scroll</strong> &mdash; Daily English Verse Reflection for iOS.<br />
+        <span>&copy; 2026 placebonocebo.com. All rights reserved.</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://placebonocebo.com/">Home</a>
+        <a href="#introduction">About</a>
+        <a href="#features">Features</a>
+        <a href="https://placebonocebo.com/privacy">Privacy Policy</a>
+        <a href="mailto:support@placebonocebo.com">Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive Card Script -->
+  <script>
+    const sampleVerses = [
+      {
+        surah: "Surah Ash-Sharh • 94:5",
+        badge: "Meccan",
+        text: "“For indeed, with hardship [will be] ease.”",
+        ref: "Surah 94, Verse 5"
+      },
+      {
+        surah: "Surah Al-Baqarah • 2:286",
+        badge: "Medinan",
+        text: "“Allah does not charge a soul except [with that within] its capacity.”",
+        ref: "Surah 2, Verse 286"
+      },
+      {
+        surah: "Surah Ar-Ra'd • 13:28",
+        badge: "Medinan",
+        text: "“Unquestionably, by the remembrance of Allah hearts are assured.”",
+        ref: "Surah 13, Verse 28"
+      },
+      {
+        surah: "Surah At-Talaq • 65:3",
+        badge: "Medinan",
+        text: "“And whoever relies upon Allah – then He is sufficient for him.”",
+        ref: "Surah 65, Verse 3"
+      },
+      {
+        surah: "Surah Al-Hadid • 57:4",
+        badge: "Medinan",
+        text: "“And He is with you wherever you are.”",
+        ref: "Surah 57, Verse 4"
+      }
+    ];
+
+    let currentIndex = 0;
+
+    function nextPreviewVerse() {
+      currentIndex = (currentIndex + 1) % sampleVerses.length;
+      const v = sampleVerses[currentIndex];
+      document.getElementById("previewSurah").textContent = v.surah;
+      document.getElementById("previewBadge").textContent = v.badge;
+      document.getElementById("previewText").textContent = v.text;
+      document.getElementById("previewRef").textContent = v.ref;
+    }
+
+    const themes = {
+      parchment: { frame: "#EFE9DC", card: "#FAF6EE", text: "#231F1A", accent: "#8B6528", pillBg: "rgba(139,101,40,0.12)" },
+      midnight:  { frame: "#0A0C10", card: "#141821", text: "#F2F4F8", accent: "#D4AF37", pillBg: "rgba(212,175,55,0.15)" },
+      clean:     { frame: "#EAECEF", card: "#FFFFFF", text: "#111827", accent: "#2563EB", pillBg: "rgba(37,99,235,0.10)" },
+      sage:      { frame: "#DCE5DF", card: "#EEF3EF", text: "#182820", accent: "#2E6F4E", pillBg: "rgba(46,111,78,0.12)" }
+    };
+
+    function setTheme(name, btn) {
+      const t = themes[name];
+      if (!t) return;
+      document.getElementById("phoneFrame").style.background = t.frame;
+      const card = document.getElementById("verseCard");
+      card.style.background = t.card;
+      document.getElementById("previewText").style.color = t.text;
+      document.getElementById("previewRef").style.color = t.accent;
+      document.querySelectorAll(".surah-pill").forEach(el => {
+        el.style.background = t.pillBg;
+        el.style.color = t.accent;
+      });
+      document.querySelectorAll(".theme-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    }
+  </script>
 </body>
 </html>
